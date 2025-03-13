@@ -11,12 +11,15 @@ import { Article, Person } from "@mui/icons-material";
 import HomePage from "./pages/dashboard/dashboard";
 import { authProvider } from "./authProvider";
 
+/* import loginPage from "./login"; */
+
 export const App = () => (
   <Admin
     layout={Layout}
     dataProvider={dataProvider}
     dashboard={HomePage}
     authProvider={authProvider}
+    /* loginPage={loginPage()} */
   >
     <Resource
       icon={Article}

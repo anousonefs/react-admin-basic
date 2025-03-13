@@ -40,7 +40,6 @@ const PostList = () => {
         <ReferenceField source="userId" reference="users" />
         <EditButton />
       </Datagrid>
-      // SimpleList
     </List>
   );
 };
