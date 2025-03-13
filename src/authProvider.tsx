@@ -1,12 +1,20 @@
 import { AuthProvider } from "react-admin";
+import pb from "./api/pocketbase"; // Import PocketBase instance
 
 export const authProvider: AuthProvider = {
-  login: ({ username, password }) => {
-    if (username === "admin" && password === "admin") {
-      console.log("=> set user password");
+  login: async ({
+    username,
+    password,
+  }: {
+    username: string;
+    password: string;
+  }): Promise<void> => {
+    try {
+      console.log("username: ", username, "pwd", password);
+      await pb.collection("users").authWithPassword(username, password);
       localStorage.setItem("username", username);
       return Promise.resolve();
-    } else {
+    } catch (e) {
       return Promise.reject();
     }
   },
