@@ -6,7 +6,6 @@ const UserShow = () => (
       <TextField source="id" />
       <TextField source="name" />
       <TextField source="email" />
-      <TextField source="phone" />
     </SimpleShowLayout>
   </Show>
 );

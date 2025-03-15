@@ -29,6 +29,7 @@ export const App = () => (
       edit={PostEdit}
       create={PostCreate}
     />
+
     <Resource icon={Person} name="users" list={UserList} show={UserShow} />
   </Admin>
 );

@@ -1,8 +1,5 @@
 import PocketBase from "pocketbase";
 
-// Initialize PocketBase instance
-console.log("pocketbase url", import.meta.env.POCKETBASE_URL);
-
 const pb = new PocketBase("http://localhost:8081"); // Replace with your PocketBase URL
 pb.autoCancellation(false);
 
