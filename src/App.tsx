@@ -11,7 +11,7 @@ import { Article, Person } from "@mui/icons-material";
 import HomePage from "./pages/dashboard/dashboard";
 import { authProvider } from "./authProvider";
 
-/* import loginPage from "./login"; */
+import loginPage from "./login";
 
 export const App = () => (
   <Admin
@@ -19,7 +19,7 @@ export const App = () => (
     dataProvider={dataProvider}
     dashboard={HomePage}
     authProvider={authProvider}
-    /* loginPage={loginPage()} */
+    loginPage={loginPage}
   >
     <Resource
       icon={Article}

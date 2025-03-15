@@ -3,16 +3,15 @@ import pb from "./api/pocketbase"; // Import PocketBase instance
 
 export const authProvider: AuthProvider = {
   login: async ({
-    username,
+    email,
     password,
   }: {
-    username: string;
+    email: string;
     password: string;
   }): Promise<void> => {
     try {
-      console.log("username: ", username, "pwd", password);
-      await pb.collection("users").authWithPassword(username, password);
-      localStorage.setItem("username", username);
+      await pb.collection("users").authWithPassword(email, password);
+      localStorage.setItem("username", email);
       return Promise.resolve();
     } catch (e) {
       return Promise.reject();
