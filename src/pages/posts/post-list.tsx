@@ -6,7 +6,7 @@ import {
   FunctionField,
   useRecordContext,
   EditButton,
-  TextInput,
+  SearchInput,
   ReferenceInput,
 } from "react-admin";
 
@@ -17,7 +17,7 @@ const PostPanel = () => {
 
 const PostList = () => {
   const postFilters = [
-    <TextInput source="q" label="Search" alwaysOn />,
+    <SearchInput source="q" alwaysOn />,
     <ReferenceInput source="userId" label="User" reference="users" alwaysOn />,
   ];
   return (

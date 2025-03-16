@@ -23,6 +23,17 @@ export const dataProvider: DataProvider = {
       return Promise.reject(new Error("Failed to fetch records."));
     }
   },
+  getMany: async (resource, params) => {
+    try {
+      const records = await pb.collection(resource).getFullList();
+      return {
+        data: records.map((record: any) => ({ ...record, id: record.id })),
+      };
+    } catch (error) {
+      console.error("Error in getMany:", error);
+      return Promise.reject(new Error("Failed to fetch records."));
+    }
+  },
 
   getOne: async (resource, params) => {
     try {

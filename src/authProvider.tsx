@@ -10,8 +10,15 @@ export const authProvider: AuthProvider = {
     password: string;
   }): Promise<void> => {
     try {
-      await pb.collection("users").authWithPassword(email, password);
+      const response = await pb
+        .collection("users")
+        .authWithPassword(email, password);
       localStorage.setItem("username", email);
+
+      const token = response.token;
+      if (token) {
+        pb.authStore.save(token); // Save token in PocketBase's auth store
+      }
       return Promise.resolve();
     } catch (e) {
       return Promise.reject();
@@ -19,22 +26,20 @@ export const authProvider: AuthProvider = {
   },
   logout: () => {
     console.log("=> logout");
-    localStorage.removeItem("username");
+    pb.authStore.clear(); // Clear PocketBase authentication
     return Promise.resolve();
   },
   checkError: ({ status }: { status: number }) => {
     console.log("=> check error");
     if (status === 401 || status === 403) {
-      localStorage.removeItem("username");
+      pb.authStore.clear();
       return Promise.resolve();
     }
     return Promise.reject();
   },
   checkAuth: () => {
-    console.log("=> check auth");
-    return localStorage.getItem("username")
-      ? Promise.resolve()
-      : Promise.reject();
+    console.log("=> check auth", pb.authStore.isSuperuser);
+    return pb.authStore.isValid ? Promise.resolve() : Promise.reject();
   },
   getPermissions: () => Promise.resolve(),
 };

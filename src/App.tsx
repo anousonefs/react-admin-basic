@@ -12,6 +12,7 @@ import HomePage from "./pages/dashboard/dashboard";
 import { authProvider } from "./authProvider";
 
 import loginPage from "./login";
+import UserEdit from "./pages/users/user-edit";
 
 export const App = () => (
   <Admin
@@ -30,6 +31,12 @@ export const App = () => (
       create={PostCreate}
     />
 
-    <Resource icon={Person} name="users" list={UserList} show={UserShow} />
+    <Resource
+      icon={Person}
+      name="users"
+      list={UserList}
+      edit={UserEdit}
+      show={UserShow}
+    />
   </Admin>
 );
