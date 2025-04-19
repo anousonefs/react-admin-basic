@@ -14,6 +14,7 @@ export const dataProvider: DataProvider = {
       const { field, order } = params.sort || {}; // Sorting
 
       const filter = params.filter;
+      console.log("Filter:", filter);
 
       let filterQuery = "";
 
@@ -24,7 +25,11 @@ export const dataProvider: DataProvider = {
       ) {
         filterQuery = Object.entries(filter)
           .map(([key, value]) => {
-            if (typeof value === "string") {
+            if (key === "title" && typeof value === "string") {
+              return `${key} ~ '${value}'`;
+            } else if (key === "username" && typeof value === "string") {
+              return `${key} ~ '${value}'`;
+            } else if (typeof value === "string") {
               return `${key} = '${value}'`;
             } else if (typeof value === "number") {
               return `${key} = ${value}`;
@@ -42,6 +47,12 @@ export const dataProvider: DataProvider = {
           })
           .join(" && ");
       }
+
+      if (filterQuery.endsWith(" && ")) {
+        filterQuery = filterQuery.slice(0, -4);
+      }
+
+      console.log("filterQuery:", filterQuery);
 
       const response = await pb
         .collection(resource)

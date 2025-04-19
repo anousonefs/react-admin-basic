@@ -13,6 +13,7 @@ import { authProvider } from "./authProvider";
 
 import loginPage from "./login";
 import UserEdit from "./pages/users/user-edit";
+import UserCreate from "./pages/users/user-create";
 
 export const App = () => (
   <Admin
@@ -37,6 +38,7 @@ export const App = () => (
       list={UserList}
       edit={UserEdit}
       show={UserShow}
+      create={UserCreate}
     />
   </Admin>
 );

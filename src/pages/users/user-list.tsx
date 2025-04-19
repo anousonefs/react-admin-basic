@@ -5,7 +5,7 @@ import {
   TextField,
   SelectInput,
   useGetList,
-  SearchInput,
+  TextInput,
 } from "react-admin";
 
 const UserList = () => {
@@ -27,7 +27,7 @@ const UserList = () => {
       alwaysOn
     />,
 
-    <SearchInput source="q" alwaysOn />,
+    <TextInput source="username" label="username" alwaysOn />,
 
     /* <ReferenceInput */
     /*   source="username" */

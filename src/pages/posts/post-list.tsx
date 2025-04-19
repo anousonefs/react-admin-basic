@@ -6,8 +6,9 @@ import {
   FunctionField,
   useRecordContext,
   EditButton,
-  SearchInput,
+  DeleteButton,
   ReferenceInput,
+  TextInput,
 } from "react-admin";
 
 const PostPanel = () => {
@@ -17,7 +18,7 @@ const PostPanel = () => {
 
 const PostList = () => {
   const postFilters = [
-    <SearchInput source="q" alwaysOn />,
+    <TextInput source="title" label="title" alwaysOn />,
     <ReferenceInput source="userId" label="User" reference="users" alwaysOn />,
   ];
   return (
@@ -39,6 +40,7 @@ const PostList = () => {
         />
         <ReferenceField source="userId" reference="users" />
         <EditButton />
+        <DeleteButton />
       </Datagrid>
     </List>
   );
